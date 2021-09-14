@@ -20,7 +20,18 @@ def beginner():
 
 @app.route('/statistics.html')
 def statistics():
+    # Code here needs to pull data from car
     return render_template('statistics.html')
+
+@app.route('/upload.html')
+def upload():
+    global codeinput
+
+    codeinput = request.file['code']
+
+    # Code here uploads to car
+
+    return render_template('upload.html')
 
 if __name__ =='__main__':  
     app.run(debug = True)
