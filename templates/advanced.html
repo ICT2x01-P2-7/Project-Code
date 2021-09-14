@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{%block header %}
+<h1>Advanced Mode</h1>
+<h2>Look ma! No hands!</h2>
+{% endblock %}
+
+{% block main %}
+<form action="upload.html" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="code">Enter your code here:</label>
+        <textarea class="form-control" id="code" rows="5"></textarea>
+    </div>
+</form>
+{% endblock %}
