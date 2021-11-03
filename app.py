@@ -36,6 +36,12 @@ def connect():
 def game():
     return render_template('game.html')
 
+@app.route('/challenge.html', methods=['POST'])
+def challenge():
+    addr = request.form.get("carIP")
+    print(addr)
+    return render_template('challenge.html')
+
 @app.route('/upload.html')
 def upload():
     global codeinput

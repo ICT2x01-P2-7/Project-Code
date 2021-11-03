@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block main %}
-<form action="game.html" method="POST" enctype="multipart/form-data">
+<form action="challenge.html" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="code">Car IP address:</label>
-        <input type="password" class="form-control" id="carIP" placeholder="192.168.1.1">
+        <input type="text" class="form-control" id="carIP" name="carIP" placeholder="192.168.1.1">
         <button type="submit" class="btn btn-success">Submit</button>
     </div>
 </form>
