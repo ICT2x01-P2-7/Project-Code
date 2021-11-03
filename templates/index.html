@@ -1,54 +1,19 @@
 {% extends "layout.html" %}
 
 {%block header %}
-<h1>Project McQueen</h1>
+<h1>Welcome to Project McQueen!</h1>
 <h2>Ka Chow</h2>
 {% endblock %}
 
 {% block main %}
-<section id="features">
-    <h2>Our Features!</h2>
-    <div class="row">
-    <article class="col-sm">
-        <h3>Advanced Mode</h3>                    
-        <figure>
-            <img class="img-thumbnail" id="Upload" src={{ url_for('static', filename='images/advanced.jpg')}} alt="Advanced">
-        </figure>
-        <p>
-            Upload your own code to the car!
-        </p>
-    </article>
-    <article class="col-sm">
-        <h3>Beginner Mode</h3>
-        <figure>
-            <img class="img-thumbnail" id="See" src={{ url_for('static', filename='images/beginner.jpg')}} alt="Beginner"/>
-        </figure>
-        <p>
-            New to programming? No problem! Your simple easy to use IDE will get you started!
-        </p>
-    </article>
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+<form action="connect.html" method="POST">
+    <div class="form-group">
+        <label for="code">Instructor Password:</label>
+        <input type="password" class="form-control" id="instructorPW" name="instructorPW" placeholder="Password">
+        <button type="submit" class="btn btn-success">Submit</button>
     </div>
-</section>
-<section id="features2">
-    <div class="row">
-    <article class="col-sm">
-        <h3>Seamless Integration</h3>
-        <figure>
-            <img class="img-thumbnail" id="graph" src={{ url_for('static', filename='images/Graph.jpg')}} alt="Graph"/>
-        </figure>
-        <p>
-            Codes upload to the car seamlessly over WiFi! It's like a remote control!
-        </p>
-    </article>
-    <article class="col-sm">
-        <h3>Portable</h3>
-        <figure>
-            <img class="img-thumbnail" id="export" src={{ url_for('static', filename='images/portable.jpg')}} alt="portable"/>
-        </figure>
-        <p>
-            This web application can be run on any server that is connected to the same network as the car! It's like a universal remote control!
-        </p>
-    </article>
-    </div>
-</section>
+</form>
 {% endblock %}

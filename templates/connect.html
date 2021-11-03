@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{%block header %}
+<h1>Welcome to Project McQueen!</h1>
+<h2>Ka Chow</h2>
+{% endblock %}
+
+{% block main %}
+<form action="game.html" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="code">Car IP address:</label>
+        <input type="password" class="form-control" id="carIP" placeholder="192.168.1.1">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
+{% endblock %}
