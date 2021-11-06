@@ -7,6 +7,10 @@
 
 {% block main %}
 <h4>Select your difficulty</h4><br>
-<button type="button" class="btn btn-success">Easy</button>
-<button type="button" class="btn btn-danger">Difficult</button>
+<form action="" method="post">
+    <button type="button" class="btn btn-success" name="difficulty" value="easy">Easy</button>
+</form>
+<form action="" method="post">
+    <button type="button" class="btn btn-danger" name="difficulty" value="diff">Difficult</button>
+</form>
 {% endblock %}
