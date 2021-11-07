@@ -34,8 +34,12 @@ def connect():
     print(error)
     return render_template('connect.html', error=error)
 
-@app.route('/game.html')
+@app.route('/game.html', methods=['POST'])
 def game():
+    error = None
+    difficulty = request.form.get("difficulty")
+    print(difficulty)
+
     return render_template('game.html')
 
 @app.route('/challenge.html', methods=['POST'])
