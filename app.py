@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
-import hashlib
+from authenticate import check
 
 app = Flask(__name__) # Create the flask object  
  
@@ -19,20 +19,16 @@ def connect():
     password = request.form.get('instructorPW')
     print(password)
 
-    # Hash the password for comparison
-    encoded = password.encode()
-    result = hashlib.sha256(encoded)
-    hexadecimal = result.hexdigest()
+    result = check(password)
 
-    print(hexadecimal)
-
-    if hexadecimal != "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918":
-        error = 'Invalid Password!'
+    if result:
         print(error)
-        #return redirect(url_for('home', error=error))
-        return render_template('index.html', error=error)
+        return render_template('connect.html', error=error)
+
+    error = 'Invalid Password!'
     print(error)
-    return render_template('connect.html', error=error)
+    #return redirect(url_for('home', error=error))
+    return render_template('index.html', error=error)
 
 @app.route('/game.html', methods=['POST'])
 def game():
