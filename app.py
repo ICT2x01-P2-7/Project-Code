@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
+from ip import validate_ip_address
 
 app = Flask(__name__) # Create the flask object  
  
@@ -45,30 +46,12 @@ def challenge():
     print(addr)
 
     check = validate_ip_address(addr)
+
     if check == False:
         error = 'Invalid IP Address!'
         return render_template('connect.html', error=error)
 
-    return render_template('challenge.html')
-
-def validate_ip_address(address):
-    parts = address.split(".")
-
-    if len(parts) != 4:
-        print("IP address {} is not valid".format(address))
-        return False
-
-    for part in parts:
-        if not isinstance(int(part), int):
-            print("IP address {} is not valid".format(address))
-            return False
-
-        if int(part) < 0 or int(part) > 255:
-            print("IP address {} is not valid".format(address))
-            return False
- 
-    print("IP address {} is valid".format(address))
-    return True 
+    return render_template('challenge.html') 
 
 @app.route('/upload.html')
 def upload():
