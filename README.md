@@ -4,8 +4,24 @@ Project McQueen is a fun and interactive web portal to allow students to create 
 
 ## How To Run
 
+- keep it straight to the point of how to access the entry point of the web app
+- any necessary dependencies to run it
+
 ## Development Workflow
+
+Keep it straight to the point of how to access the entry point of the web app
+any necessary dependencies to run it
 
 ## User Acceptance Testing
 
+- Include an updated use case diagram and system state diagram if there are changes made based on M2. Highlight the changes clearly.
+- An embedded video that runs through all the system test cases you have created (and refined) from M2
+- ~3 mins long to cover all system tests
+
 ## Whitebox Testing
+
+- choose one meaningful class to demonstrate your test code. “Meaningful” here means 2 or more interactions with other classes, e.g., a Control class. Please do not use an Entity class.
+- list the test cases for this test suite (for this one class) and where they reside in your repo
+- show code coverage statistics for each test case, including an explanation of how you have generated these statistics (whether manual, through a lib, or via the IDE)
+- provide instructions how to run the test suite
+- embed an animated gif or another short video (~1 min) of the test case being ran

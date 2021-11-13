@@ -6,11 +6,15 @@
 {% endblock %}
 
 {% block main %}
-<h4>Select your difficulty</h4><br>
-<form action="game.html" method="post">
-    <button type="submit" class="btn btn-success" name="difficulty" value="easy">Easy</button>
-</form>
-<form action="game.html" method="post">
-    <button type="submit" class="btn btn-danger" name="difficulty" value="diff">Difficult</button>
-</form>
+<div class="row justify-content-center">
+    <h4>Select your difficulty</h4><br>
+</div>
+<br>
+<div class="row justify-content-center">
+    <form action="game.html" method="post">
+        <button type="submit" class="btn btn-success" name="difficulty" value="easy">Easy</button>
+        <button type="submit" class="btn btn-danger" name="difficulty" value="diff">Difficult</button>
+    </form>
+    <br><br>
+</div>
 {% endblock %}
