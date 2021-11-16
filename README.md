@@ -7,6 +7,16 @@ Project McQueen is a fun and interactive web portal to allow students to create 
 - keep it straight to the point of how to access the entry point of the web app
 - any necessary dependencies to run it
 
+In order to run our application, make sure python 3.9 is installed on your system and execute the following command.
+
+pip3 install -r requirements.txt
+
+This will install all requirements that are needed for the application. Finally, execute the following command to start the server.
+
+python3 app.py
+
+This will start the server. Navigate to localhost:5000 to view the web app.
+
 ## Development Workflow
 
 Keep it straight to the point of how to access the entry point of the web app
