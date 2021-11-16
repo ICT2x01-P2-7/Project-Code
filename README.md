@@ -14,6 +14,16 @@ This will install all requirements that are needed for the application. Finally,
 
 This will start the server. Navigate to localhost:5000 to view the web app.
 
+In order to run our application, make sure python 3.9 is installed on your system and execute the following command.
+
+pip3 install -r requirements.txt
+
+This will install all requirements that are needed for the application. Finally, execute the following command to start the server.
+
+python3 app.py
+
+This will start the server. Navigate to localhost:5000 to view the web app.
+
 ## Development Workflow
 
 Github has been a very big part of our team's effort to collaborate with each other during the development of this application. Our project makes use of Github's project board to track our tasks and backlog. The issues feature allow us to assign people to different tasks as well. In addition to the documentation features, we make use of Github's Pull Request feature to manage our codebase. Our code base is split into 2 branches, Master and Develop. All development work by the team is done on each team member's feature branch before opening Pull Requests for reviews and merging into the develop branch. Weekly releases are tagged and released on Github under the releases section, this allows us to fall back on a backup if necessary.
