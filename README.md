@@ -16,8 +16,7 @@ This will start the server. Navigate to localhost:5000 to view the web app.
 
 ## Development Workflow
 
-Keep it straight to the point of how to access the entry point of the web app
-any necessary dependencies to run it
+- provide a brief yet sufficiently comprehensive description of your team’s workflow using git and GitHub features
 
 ## User Acceptance Testing
 
