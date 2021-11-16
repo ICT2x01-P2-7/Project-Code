@@ -33,11 +33,14 @@ def connect():
 
 @app.route('/game.html', methods=['POST'])
 def game():
-    error = None
-    difficulty = request.form.get("difficulty")
-    print(difficulty)
+    if request.form.get("difficulty") == "easy":
+        mode = "Easy Mode"
+        difficulty = "Place 2 obstacles on the map to continue"
+    else:
+        mode = "Difficult Mode"
+        difficulty = "Place 3 obstacles on the map to continue"
 
-    return render_template('game.html')
+    return render_template('game.html', mode=mode, difficulty=difficulty)
 
 @app.route('/challenge.html', methods=['POST'])
 def challenge():

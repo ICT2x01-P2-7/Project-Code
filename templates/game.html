@@ -1,13 +1,8 @@
 {% extends "layout.html" %}
 
-{%block header %}
-    {% if difficulty == 'easy' %}
-        <h1>Easy Mode</h1>
-        <h2>Place 2 Obstacles on the map to continue</h2>
-    {% else %}
-        <h1>Difficult Mode</h1>
-        <h2>Place 3 Obstacles on the map to continue</h2>
-    {% endif %}
+{% block header %}
+    <h1>{{ mode }}</h1>
+    <h2>{{ difficulty }}</h2>
 {% endblock %}
 
 {% block main %}
