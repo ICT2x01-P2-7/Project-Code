@@ -16,8 +16,6 @@ This will start the server. Navigate to localhost:5000 to view the web app.
 
 ## Development Workflow
 
-- provide a brief yet sufficiently comprehensive description of your team’s workflow using git and GitHub features
-
 Github has been a very big part of our team's effort to collaborate with each other during the development of this application. Our project makes use of Github's project board to track our tasks and backlog and the issues feature allow us to assign people to different tasks. In addition to the documentation features, we make use of Github's Pull Request feature to manage our codebase. Our code base is split into 2 branches, Master and Develop. Weekly releases are tagged and released on Github under the releases section, this allows us to fall back on a backup if necessary. All development work by the team is done on our own feature branch before opening Pull Requests for reviews and merging into the develop branch.
 
 ## User Acceptance Testing
