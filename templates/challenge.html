@@ -10,11 +10,21 @@
     <h4>Select your difficulty</h4><br>
 </div>
 <br>
-<div class="row justify-content-center">
+<div class="container">
     <form action="game.html" method="post">
-        <button type="submit" class="btn btn-success" name="difficulty" value="easy">Easy</button>
-        <button type="submit" class="btn btn-danger" name="difficulty" value="diff">Difficult</button>
+        <div class="row">
+            <div class="col text-center">
+        <button type="submit" class="btn btn-primary" name="difficulty" value="easy">Easy</button>
+            <br>Recommended for beginners with buttons for easy understanding
+            </div>
+            <div class="col text-center">
+        <button type="submit" class="btn btn-primary" name="difficulty" value="diff">Difficult</button>
+            <br>Recommended for advanced players with some coding skills
+            </div>
+        </div>
+        <div class="row">
+        </div>
     </form>
-    <br><br>
+    <br>
 </div>
 {% endblock %}
