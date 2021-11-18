@@ -28,7 +28,11 @@ def validate_ip_address(address):
 # Output: Boolean
 def start_connect(address):
     URL = "http://" + address + "/"
-    response = requests.get(URL)
+    
+    try:
+        response = requests.get(URL)
+    except:
+        return False
     print(response.status_code)
     print(response.text)
 
