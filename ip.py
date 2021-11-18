@@ -1,3 +1,6 @@
+import socket
+import requests
+
 def validate_ip_address(address):
     parts = address.split(".")
 
@@ -16,3 +19,15 @@ def validate_ip_address(address):
  
     #print("IP address {} is valid".format(address))
     return True
+
+def start_connect(address):
+    URL = "http://" + address + "/"
+    response = requests.get(URL)
+    print(response.status_code)
+    print(response.text)
+
+    if response.status_code == True:
+        return True
+    else:
+        return False        
+       
