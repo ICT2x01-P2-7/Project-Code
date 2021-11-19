@@ -28,3 +28,8 @@ How to use Git on the project
 - Repeat the above steps for the next feature.
 
 **NOTE**: Do not merge your development branch on **master** and **develop** otherwise you will merge not validated features! Always open Pull Requests from your branch to **develop** after a feature is completed.
+
+Tags and Releases
+------------------
+
+The latest commit on the last day of the week will be pushed to master and tagged as the weekly release after testing.
