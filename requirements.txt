@@ -1,3 +1,5 @@
 flask
 werkzeug
 hashlib
+socket
+requests
