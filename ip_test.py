@@ -15,7 +15,7 @@ def test2():
 def test3():
     result = validate_ip_address('19216801')
 
-    print("Test 3: Passed in '19216801', expect False")
+    print("Test 3: Passed in integer 19216801, expect False")
     print("Result returned: ", result)
 
 def test4():
