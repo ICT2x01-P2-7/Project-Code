@@ -49,4 +49,4 @@ To generate the report, execute the following commands in sequential order
 Coverage report will print the results directly in the terminal while coverage html will generate a website for easier viewing.
 
 ## Test Case Video
-https://user-images.githubusercontent.com/77475889/143173523-b1a8e729-e8fd-4216-804d-c5c755300dcd.mp4
+https://user-images.githubusercontent.com/77475889/143190961-ea4461a3-0ff8-46ce-b4a1-bb7ea6098e0a.mp4
