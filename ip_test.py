@@ -32,7 +32,7 @@ def test5():
 
 # Test cases for start_connect
 def test6():
-    result = start_connect('192.168.0.1')
+    result = start_connect('192.168.4.1')
 
     print("Test 6: Passed in '192.168.0.1', expect True")
     print("Result returned: ", result)

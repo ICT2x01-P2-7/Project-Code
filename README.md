@@ -33,3 +33,19 @@ For more information about our git workflow, please refer to flow.md.
 - show code coverage statistics for each test case, including an explanation of how you have generated these statistics (whether manual, through a lib, or via the IDE)
 - provide instructions how to run the test suite
 - embed an animated gif or another short video (~1 min) of the test case being ran
+
+For our whitebox testing, we selected the CarManagement control class. This control class encompasses the instructor login and the car connection which are ip.py and authenticate.py respectively. For each of the python file, we manually created test cases that will cover as much lines of code as possible. After creating the test cases, we used Coverage.py to test for code coverage. The results of this can be seen in CoverageReport.txt and in index.html inside the htmlcov folder.
+
+To run the tests, execute the following commands in sequential order
+
+```coverage run authenticate_test.py```
+```coverage run -a ip_test.py```
+
+To generate the report, execute the following commands in sequential order
+
+```coverage report```
+```coverage html```
+
+Coverage report will print the results directly in the terminal while coverage html will generate a website for easier viewing.
+
+## Test Case Video
