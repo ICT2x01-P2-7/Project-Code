@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
-from ip import validate_ip_address, start_connect
+from ip import IpValidator, validate_ip_address, start_connect
 
 app = Flask(__name__) # Create the flask object  
  
@@ -47,9 +47,10 @@ def challenge():
     error = None
     addr = request.form.get("carIP")
     print(addr)
-
-    check = validate_ip_address(addr)
-    status = start_connect(addr)
+    
+    validator = IpValidator(addr)
+    check = validator.validate_ip_address()
+    status = validator = start_connect()
 
     if addr == '1.1.1.1':
         return render_template('challenge.html')
