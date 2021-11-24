@@ -11,10 +11,10 @@ Other branches are **development** branches. These branches correspond to each t
 How to use Git on the project
 -----------------------------
 
-- After a pull request has been approved and merged, rebase your branch to the latest commit of the develop branch
+- After a pull request has been approved and merged, merge develop into your branch
 
 ```git checkout <NameOfMember>Branch```
-```git rebase develop```
+```git merge develop```
 
 - Resolve any conflicts if any
 - Commit your modifications on it
