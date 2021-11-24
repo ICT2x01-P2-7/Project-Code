@@ -38,14 +38,15 @@ For our whitebox testing, we selected the CarManagement control class. This cont
 
 To run the tests, execute the following commands in sequential order
 
-```coverage run authenticate_test.py```
+```coverage run authenticate_test.py```\
 ```coverage run -a ip_test.py```
 
 To generate the report, execute the following commands in sequential order
 
-```coverage report```
+```coverage report```\
 ```coverage html```
 
 Coverage report will print the results directly in the terminal while coverage html will generate a website for easier viewing.
 
 ## Test Case Video
+https://user-images.githubusercontent.com/77475889/143173523-b1a8e729-e8fd-4216-804d-c5c755300dcd.mp4
