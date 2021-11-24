@@ -33,3 +33,7 @@ Tags and Releases
 ------------------
 
 The latest commit on the last day of the week will be pushed to master and tagged as the weekly release after testing.
+  
+Workflow Diagram
+------------------
+![ICT2201_2101 Project Diagrams - Git Workflow](https://user-images.githubusercontent.com/77475889/143162837-d71af599-fecc-46bb-af38-7505ead28bc8.png)
