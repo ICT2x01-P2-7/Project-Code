@@ -53,7 +53,7 @@ Coverage report will print the results directly in the terminal while coverage h
 For the authenticate.py, there is a total of 5 test cases. The description for each of the test cases is as follows
 
 Test1(): Passing in a string with normal alphabets to simulate a user keying in a string that is the wrong password\
-Test2(): Passing in an integer to simulate a user keying in an integer\n
+Test2(): Passing in an integer to simulate a user keying in an integer\
 Test3(): Passing in a string with a mix of normal alphabets and numbers to simulate a user using a mix of letters and numbers\
 Test4(): Passing in a string with the correct password to simulate a user keying in the correct password\
 Test5(): Passing in a float with a decimal point to simulate a user keying in a number with a decimal\
