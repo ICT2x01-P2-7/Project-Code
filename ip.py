@@ -4,6 +4,7 @@ import requests
 class IpValidator:
     def __init__(self, address: str) -> None:
         self.address = address
+        
     # This method checks to make sure that the input from the user is valid
     # Input: String
     # Output: Boolean

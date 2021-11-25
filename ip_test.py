@@ -1,4 +1,4 @@
-from ip import IpValidator, validate_ip_address, start_connect
+from ip import IpValidator
 
 def test1():
     ipTest = IpValidator('192.168.0.1')
