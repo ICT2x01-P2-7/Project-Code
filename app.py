@@ -50,7 +50,7 @@ def challenge():
     
     validator = IpValidator(addr)
     check = validator.validate_ip_address()
-    status = validator = start_connect()
+    status = validator.start_connect()
 
     if addr == '1.1.1.1':
         return render_template('challenge.html')
