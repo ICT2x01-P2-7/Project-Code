@@ -58,7 +58,18 @@ Test3(): Passing in a string with a mix of normal alphabets and numbers to simul
 Test4(): Passing in a string with the correct password to simulate a user keying in the correct password\
 Test5(): Passing in a float with a decimal point to simulate a user keying in a number with a decimal\
 
-For the ip.py file, there is a total of 10 test cases.
+For the ip.py file, there is a total of 10 test cases. The test cases covers both validate_ip_address and start_connect. Test1() to Test5() are similar to Test6() to Test10. They call the validate_ip_address and start_connect respectively with similar data as the input. The description for each of the test cases is as follows
+
+Test1(): Passing in a string with a normal IP address to simulate a user keying in a valid IP address\
+Test2(): Passing in a string with a valid IP address format but invalid value to simulate a user keying in an invalid value\
+Test3(): Passing in a string with an invalid IP address format (Full IP address without any periods) to simulate a user missing out the periods in the IP address\
+Test4(): Passing in a string with an invalid IP address format (Incomplete IP address) to simulate a user keying in only the first part of the IP address\
+Test5(): Passing in a string with text to simulate a user keying in text instead of an IP address\
+Test6(): Passing in a string with a normal IP address to simulate a user keying in a valid IP address\
+Test7(): Passing in a string with a valid IP address format but invalid value to simulate a user keying in an invalid value\
+Test8(): Passing in a string with an invalid IP address format (Full IP address without any periods) to simulate a user missing out the periods in the IP address\
+Test9(): Passing in a string with an invalid IP address format (Incomplete IP address) to simulate a user keying in only the first part of the IP address\
+Test10(): Passing in a string with text to simulate a user keying in text instead of an IP address\
 
 ## Test Case Video
 https://user-images.githubusercontent.com/77475889/143190961-ea4461a3-0ff8-46ce-b4a1-bb7ea6098e0a.mp4
