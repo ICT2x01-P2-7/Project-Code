@@ -58,5 +58,7 @@ Test3(): Passing in a string with a mix of normal alphabets and numbers to simul
 Test4(): Passing in a string with the correct password to simulate a user keying in the correct password\
 Test5(): Passing in a float with a decimal point to simulate a user keying in a number with a decimal\
 
+For the ip.py file, there is a total of 10 test cases.
+
 ## Test Case Video
 https://user-images.githubusercontent.com/77475889/143190961-ea4461a3-0ff8-46ce-b4a1-bb7ea6098e0a.mp4

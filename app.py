@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
-from ip import IpValidator, validate_ip_address, start_connect
+from ip import IpValidator
 
 app = Flask(__name__) # Create the flask object  
  
