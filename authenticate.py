@@ -1,5 +1,14 @@
 import hashlib
 
+class User:
+    def __init__(self):
+        self.password = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+    
+    def getPassword(self):
+        return self.password
+
+
+
 def check(input):
     if isinstance(input, int):
         return False
@@ -13,8 +22,10 @@ def check(input):
     hexadecimal = result.hexdigest()
 
     #print(hexadecimal)
+    userTest = User();
     
-    if hexadecimal != "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918":
+    if hexadecimal != userTest.getPassword():
         return False
     
     return True
+
