@@ -51,7 +51,9 @@ Test2(): Passing in an integer to simulate a user keying in an integer\
 Test3(): Passing in a string with a mix of normal alphabets and numbers to simulate a user using a mix of letters and numbers\
 Test4(): Passing in a string with the correct password to simulate a user keying in the correct password\
 Test5(): Passing in a float with a decimal point to simulate a user keying in a number with a decimal\
-
+\
+\
+\
 For the ip.py file, there is a total of 10 test cases. The test cases covers both validate_ip_address and start_connect. Test1() to Test5() are similar to Test6() to Test10. They call the validate_ip_address and start_connect respectively with similar data as the input. The description for each of the test cases is as follows
 
 Test1(): Passing in a string with a normal IP address to simulate a user keying in a valid IP address\
