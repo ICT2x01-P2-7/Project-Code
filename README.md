@@ -26,6 +26,15 @@ For more information about our git workflow, please refer to flow.md.
 - An embedded video that runs through all the system test cases you have created (and refined) from M2
 - ~3 mins long to cover all system tests
 
+### Use Case Diagram
+![ICT2201_2101 Charts - Use Case Diagram 2 0](https://user-images.githubusercontent.com/77475889/144005022-42722abe-fbf3-41b5-97f9-b596b3293cac.png)
+
+### System State Diagram
+![ICT2201_2101 Project Diagrams - Full State Diagram](https://user-images.githubusercontent.com/77475889/144004754-fba6de22-e7bc-4b0f-bdca-38752fa1f22f.png)
+
+### System Test Video
+<Place video here>
+
 ## Whitebox Testing
 
 For our whitebox testing, we selected the CarManagement control class. This control class encompasses the instructor login and the car connection which are ip.py and authenticate.py respectively. For each of the python file, we manually created test cases that will cover as much lines of code as possible. After creating the test cases, we used Coverage.py to test for code coverage. The results of this can be seen in CoverageReport.txt and in index.html inside the htmlcov folder.
