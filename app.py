@@ -4,6 +4,7 @@ from werkzeug.utils import redirect
 from authenticate import check
 from ip import IpValidator
 from upload import uploadCode
+import time
 
 app = Flask(__name__) # Create the flask object
 addr = "0.0.0.0" # Create a global var for IP address
@@ -75,8 +76,17 @@ def upload():
     print(addr)
     codeinput = request.form.get('playerInput')
     print(codeinput)
-    codeObj = uploadCode(codeinput, addr)
-    status = codeObj.send()
+
+    codeinput = codeinput.replace("<", "")
+    codeinput = codeinput.replace(">", "")
+
+    codesplit = codeinput.split()
+
+    for i in codesplit:
+        codeObj = uploadCode(i, addr)
+        status = codeObj.send()
+        time.sleep(1)
+        print(i)
 
     if status == False:
         error = "Code not valid!"

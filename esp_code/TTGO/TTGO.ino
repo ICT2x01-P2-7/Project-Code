@@ -93,9 +93,9 @@ void loop() {
     while (client.connected()) {            // loop while the client's connected
       if (client.available()) {             // if there's bytes to read from the client,
         char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        display.write(c);
-        display.display();
+        //Serial.write(c);                    // print it out the serial monitor
+        //display.write(c);
+        //display.display();
         if (c == '\n') {                    // if the byte is a newline character
 
           // if the current line is blank, you got two newline characters in a row.
@@ -121,13 +121,27 @@ void loop() {
         } else if (c != '\r') {  // if you got anything else but a carriage return character,
           currentLine += c;      // add it to the end of the currentLine
         }
-
+        
         // Check to see if the client request was "GET /H" or "GET /L":
-        if (currentLine.endsWith("GET /H")) {
-          digitalWrite(LED_BUILTIN, HIGH);               // GET /H turns the LED on
+        if (currentLine.endsWith("GET /UP")) {
+          digitalWrite(LED_BUILTIN, HIGH);               // GET /UP turns the LED on
+          display.println("UP");
+          Serial.println("UP");
         }
-        if (currentLine.endsWith("GET /L")) {
-          digitalWrite(LED_BUILTIN, LOW);                // GET /L turns the LED off
+        if (currentLine.endsWith("GET /DOWN")) {
+          digitalWrite(LED_BUILTIN, LOW);                // GET /DOWN turns the LED off
+          display.println("DOWN");
+          Serial.println("DOWN");
+        }
+        if (currentLine.endsWith("GET /LEFT")) {
+          digitalWrite(LED_BUILTIN, HIGH);
+          display.println("LEFT");
+          Serial.println("LEFT");
+        }
+        if (currentLine.endsWith("GET /RIGHT")) {
+          digitalWrite(LED_BUILTIN, HIGH);
+          display.println("RIGHT");
+          Serial.println("RIGHT");
         }
       }
     }

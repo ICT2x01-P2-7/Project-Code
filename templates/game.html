@@ -9,11 +9,31 @@
 {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
 {% endif %}
+<script>
+    function ButtonUP() {
+        document.getElementById("playerInput").value =  document.getElementById("playerInput").value + " " + '<UP>';
+    }
+
+    function ButtonDOWN() {
+        document.getElementById("playerInput").value = document.getElementById("playerInput").value + " " + '<DOWN>';
+    }
+
+    function ButtonLEFT() {
+        document.getElementById("playerInput").value = document.getElementById("playerInput").value + " " + '<LEFT>';
+    }
+
+    function ButtonRIGHT() {
+        document.getElementById("playerInput").value = document.getElementById("playerInput").value + " " + '<RIGHT>';
+    }
+    </script>
 <form action="upload.html" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="code">Code sequence shown here:</label>
         <textarea class="form-control" id="playerInput" name="playerInput" rows="5"></textarea>
-        <button type="button" class="btn btn-primary">Move Up</button> <button type="button" class="btn btn-primary">Move Down</button> <button type="button" class="btn btn-primary">Move Left</button> <button type="button" class="btn btn-primary">Move Right</button>
+        <button type="button" class="btn btn-primary" onclick="ButtonUP()">Move Up</button>
+        <button type="button" class="btn btn-primary" onclick="ButtonDOWN()">Move Down</button>
+        <button type="button" class="btn btn-primary" onclick="ButtonLEFT()">Move Left</button>
+        <button type="button" class="btn btn-primary" onclick="ButtonRIGHT()">Move Right</button>
         <button type="submit" class="btn btn-success">Upload Code</button>
     </div>
 </form>
