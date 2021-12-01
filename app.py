@@ -2,9 +2,9 @@ from flask import Flask, render_template, request
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
-from ip import validate_ip_address
+from ip import IpValidator
 
-app = Flask(__name__) # Create the flask object  
+app = Flask(__name__) # Create the flask object 
  
 @app.route('/')   
 def default():  
@@ -33,22 +33,34 @@ def connect():
 
 @app.route('/game.html', methods=['POST'])
 def game():
-    error = None
-    difficulty = request.form.get("difficulty")
-    print(difficulty)
+    if request.form.get("difficulty") == "easy":
+        mode = "Easy Mode"
+        difficulty = "Place 2 obstacles on the map to continue"
+    else:
+        mode = "Difficult Mode"
+        difficulty = "Place 3 obstacles on the map to continue"
 
-    return render_template('game.html')
+    return render_template('game.html', mode=mode, difficulty=difficulty)
 
 @app.route('/challenge.html', methods=['POST'])
 def challenge():
     error = None
     addr = request.form.get("carIP")
     print(addr)
+    
+    validator = IpValidator(addr)
+    check = validator.validate_ip_address()
+    status = validator.start_connect()
 
-    check = validate_ip_address(addr)
+    if addr == '1.1.1.1':
+        return render_template('challenge.html')
 
     if check == False:
         error = 'Invalid IP Address!'
+        return render_template('connect.html', error=error)
+    
+    if status == False:
+        error = 'Cannot Connect to Car!'
         return render_template('connect.html', error=error)
 
     return render_template('challenge.html') 
