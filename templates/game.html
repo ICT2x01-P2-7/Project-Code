@@ -1,20 +1,454 @@
 {% extends "layout.html" %}
 
-{% block header %}
-    <h1>{{ mode }}</h1>
-    <h2>{{ difficulty }}</h2>
+{%block header %}
+<div id="head_div">
+  <h1>Car Statistics</h1>
+  <p id="head_div_p"> Distance Moved: 0m </p>
+  <p id="head_div_s"> Car speed: 0km/h </p>
+</div>
 {% endblock %}
 
 {% block main %}
-{% if error %}
-    <p class=error><strong>Error:</strong> {{ error }}
-{% endif %}
 <form action="upload.html" method="POST" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="code">Code sequence shown here:</label>
-        <textarea class="form-control" id="playerInput" name="playerInput" rows="5"></textarea>
-        <button type="button" class="btn btn-primary">Move Up</button> <button type="button" class="btn btn-primary">Move Down</button> <button type="button" class="btn btn-primary">Move Left</button> <button type="button" class="btn btn-primary">Move Right</button>
-        <button type="submit" class="btn btn-success">Upload Code</button>
+  <div class="container">
+    <div class="container">
+      <div class="text-center mt-3">
+        <h3>
+          {{difficulty}} <a href="#MymodalPreventScript" data-toggle="modal" id="ready"
+            class="btn btn-outline-success">Ready!</a>
+        </h3>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-3 mt-auto">
+        <div class="container">
+          <div class="row">
+            <a id="up" class="btn btn-outline-primary" style="margin-left: 60px;"><i class="fas fa-arrow-up"></i></a>
+          </div>
+        </div>
+        <div class="mt-3 mb-2">
+          <a id="left" class="btn btn-outline-primary"><i class="fas fa-arrow-left"></i></a>
+          <a id="down" class="btn btn-outline-primary ml-3 mr-3"><i class="fas fa-arrow-down"></i></a>
+          <a id="right" class="btn btn-outline-primary"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <!-- <textarea readonly class="form-control" name="code" id="code" rows="5"></textarea>
+          <div id="chart_div"> -->
+        <div class="row">
+          <div id="0" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="1" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="2" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="3" class="col border changeColor" style="height: 100px; cursor: pointer;">
+            <i id="f-15" class="fas fa-car fa-3x center"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div id="4" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="5" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="6" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="7" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+        </div>
+        <div class="row">
+          <div id="8" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="9" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="10" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+          <div id="11" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
+        </div>
+        <div class="row">
+          <div id="12" class="col border changeColor" style="height: 100px; cursor: pointer;">
+            <i class="fas fa-flag-checkered fa-3x center"></i>
+          </div>
+          <div id="13" class="col border changeColor" style="height: 100px;"></div>
+          <div id="14" class="col border changeColor" style="height: 100px;"></div>
+          <div id="15" class="col border changeColor" style="height: 100px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <textarea readonly id="move_document" name="move_document"
+    class="container text-center mt-2 border border-dark">Direction Choices</textarea>
+  <div class="mt-2 mb-2">
+    <div class="float-right d-flex">
+      <a id="pause" class="btn btn-outline-danger ml-3 mb-2 pause" style="display: none;">PAUSE</a>
+      <a id="restart" class="btn btn-outline-primary ml-3 mb-2 restart" style="display: none;">RESTART</a>
+      <a id="go" class="btn btn-outline-secondary ml-3 mb-2">GO!</a>
+    </div>
+  </div>
+  </div>
 </form>
+<div class="modal fade" id="MymodalPreventScript">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="mt-1">Enter Instructor Password:</p>
+              </div>
+              <div class="col-md-6">
+                <input type="password" class="form-control" id="instructorPW" name="instructorPW"
+                  placeholder="Password">
+              </div>
+            </div>
+            <button type="button" id="enter" class="btn btn-primary float-right d-flex">Enter</button>
+          </div>
+          <div class="mt-4 d-none" id="password">
+            <center><span>Wrong password, please try again!</span></center>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+  integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var arr = [];
+  var difficulty = '{{difficulty}}';
+  console.log(difficulty);
+  // get 2nd word from string
+  difficulty = difficulty.split(" ");
+  difficulty = difficulty[1];
+  var count = 0;
+  $(document).ready(function () {
+    $(".changeColor").click(function () {
+      console.log("clicked");
+      // get id of clicekd
+      var id = $(this).attr("id");
+      console.log(id);
+      if (count < difficulty) {
+        if (id == 3 || id == 12) {
+
+        }
+        else {
+          if (arr.includes(id)) {
+            console.log("Obstacle has already been selected!");
+          } else {
+            $('#' + id).css("background-color", "red");
+            arr.push(id);
+            count++;
+          }
+        }
+      }
+      else {
+        console.log("Cannot change colour!");
+      }
+    });
+  });
+
+
+  var global_id = 3;
+  // move car to left box
+  function leftBox() {
+    console.log(arr)
+    //get id of font awesome div
+    var id = $("#0").attr("id");
+    console.log(id);
+    var id = global_id;
+    var prevId = parseInt(id) - 1;
+    //get id of previous
+    // make id of font awesome div
+    // if id is in array then can not move
+    if (arr.includes(prevId.toString())) {
+      swal("You hit an obstacle, please try again!", "", "error");
+    }
+    else {
+      if (prevId < 0) {
+        console.log("Invalid move!");
+        // global_id = parse_id
+      }
+      else {
+        if (prevId == 3 || prevId == 7 || prevId == 11) {
+          global_id = prevId + 1;
+          console.log("Invalid move!");
+        }
+        else {
+          var f_prevId = "f-" + prevId;
+          $('#' + prevId).html('<i id=' + f_prevId + ' ' + 'class="fas fa-car fa-3x center"></i>');
+          global_id = prevId;
+          // remove font awesome arrow right
+          $('#' + id).html('');
+          if (prevId == 12) {
+            // you win
+            swal("You Win!", "", "success");
+          }
+
+        }
+      }
+    }
+  }
+  function upBox() {
+    var id = $("#0").attr("id");
+    var id = global_id;
+    var prevId = parseInt(id) - 4;
+    // if id is in array then can not move up
+    if (arr.includes(prevId.toString())) {
+      swal("You hit an obstacle, please try again!", "", "error");
+    }
+    else {
+      if (prevId < 0) {
+        console.log("Invalid move!");
+        // global_id = parse_id
+      }
+      else {
+        if (prevId == -1 || prevId == -5 || prevId == -9) {
+          global_id = prevId + 4;
+          console.log("Invalid move!");
+          // global_id = parse_id
+        }
+        else {
+          var f_prevId = "f-" + prevId;
+          $('#' + prevId).html('<i id=' + f_prevId + ' ' + 'class="fas fa-car fa-3x center"></i>');
+          global_id = prevId;
+          $('#' + id).html('');
+          if (prevId == 12) {
+            // you win
+            swal("You Win!", "", "success");
+          }
+        }
+      }
+    }
+  }
+  function rightBox() {
+    var id = $("#0").attr("id");
+    var id = global_id;
+    var prevId = parseInt(id) + 1;
+    // if id is in array then can not move right
+    if (arr.includes(prevId.toString())) {
+      swal("You hit an obstacle, please try again!", "", "error");
+    }
+    else {
+      if (prevId > 15) {
+        console.log("Invalid move!");
+        // global_id = parse_id
+      }
+      else {
+        if (prevId == 4 || prevId == 8 || prevId == 12) {
+          global_id = prevId - 1;
+          console.log("Invalid move!");
+        }
+        else {
+          var f_prevId = "f-" + prevId;
+          $('#' + prevId).html('<i id=' + f_prevId + ' ' + 'class="fas fa-car fa-3x center"></i>');
+          global_id = prevId;
+          $('#' + id).html('');
+          if (prevId == 12) {
+            // you win
+            swal("You Win!", "", "success");
+          }
+        }
+      }
+    }
+  }
+  function downBox() {
+    var id = $("#0").attr("id");
+    var id = global_id;
+    var prevId = parseInt(id) + 4;
+    // if id is in array then can not move down
+    if (arr.includes(prevId.toString())) {
+      swal("You hit an obstacle, please try again!", "", "error");
+
+    }
+    else {
+
+      if (prevId > 15) {
+        console.log("Invalid move!");
+        // global_id = parse_id
+      }
+      else {
+        var f_prevId = "f-" + prevId;
+        $('#' + prevId).html('<i id=' + f_prevId + ' ' + 'class="fas fa-car fa-3x center"></i>');
+        global_id = prevId;
+        $('#' + id).html('');
+        if (prevId == 12) {
+          // you win
+          swal("You Win!", "", "success");
+        }
+      }
+    }
+  }
+
+
+</script>
+<script>
+  $(function () {
+    $(".pause").click(function () {
+	swal({
+     title:"Game Paused!",
+     text: "Do you want to resume?",
+     buttons: {
+            cancel: false,
+            confirm: "RESUME"
+     }
+});
+});
+});
+</script>
+<script>
+  $(function () {
+    $(".restart").click(function () {
+      swal({
+        title: "Would you like to restart the game?",
+        text: "The instructions entered will reset.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        button: "RESTART",
+        closeOnConfirm: false
+      }).then(isConfirmed => {
+        if (isConfirmed) {
+          // ajax call
+          $.ajax({
+            url: "game.html",
+            type: "POST",
+            data: {
+              "difficulty": "easy"
+            },
+            success: function (data) {
+              window.location.href = "/";
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+<script>
+  // on click enter function
+  move_array = [];
+  $(document).ready(function () {
+
+    $("#enter").click(function () {
+      var code = $("#instructorPW").val();
+      if (code == "admin") {
+        // if arr is not empty
+        if (arr.length == difficulty) {
+          $("#MymodalPreventScript").modal("hide");
+          // hide ready button
+          $("#ready").hide();
+          // onlick
+          $("#left").click(function () {
+            // remove text from move_document if it has "direction"
+            if ($("#move_document").text().includes("Direction Choices")) {
+              $("#move_document").text("");
+            }
+            $("#move_document").append("Move Left, ");
+            move_array.push(1);
+          });
+          $("#up").click(function () {
+            if ($("#move_document").text().includes("Direction Choices")) {
+              $("#move_document").text("");
+            }
+            $("#move_document").append("Move Up, ");
+            move_array.push(2);
+          });
+          $("#right").click(function () {
+            if ($("#move_document").text().includes("Direction Choices")) {
+              $("#move_document").text("");
+            }
+            $("#move_document").append("Move Right, ");
+            move_array.push(3);
+          });
+          $("#down").click(function () {
+            if ($("#move_document").text().includes("Direction Choices")) {
+              $("#move_document").text("");
+            }
+            $("#move_document").append("Move Down, ");
+            move_array.push(4);
+          });
+        }
+        else {
+          $("#MymodalPreventScript").modal("hide");
+          swal({
+            title: "Please Choose " + difficulty + " obstacles",
+            text: "",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "OK",
+            closeOnConfirm: false
+          });
+        }
+      }
+      else {
+        // show password is wrong in #enter form
+        $("#instructorPW").addClass("is-invalid");
+      }
+    });
+  });
+</script>
+<script>
+  // on click go button function
+  $(document).ready(function () {
+    $("#go").click(function () {
+      // call ajax call to save data in database
+      // get data from textarea
+      var move_document = $("#move_document").val();
+      console.log(move_document);
+      $.ajax({
+        url: "/upload.html",
+        type: "POST",
+        data: {
+          'move_document': move_document
+        }
+      });
+      // if move_array is not empty
+      if (move_array.length != 0) {
+        // disable go button
+        $("#go").hide();
+        // show restart button
+        $("#restart").show();
+        // show pause button
+        $("#pause").show();
+        console.log(move_array);
+        var i = 0;
+        var j = 1;
+        setInterval(function () {
+          if (i < move_array.length) {
+            if (move_array[i] == 1) {
+              leftBox();
+            }
+            else if (move_array[i] == 2) {
+              upBox();
+            }
+            else if (move_array[i] == 3) {
+              rightBox();
+            }
+            else if (move_array[i] == 4) {
+              downBox();
+            }
+          }
+
+          else return;
+          j = i + 1;
+		  k = i + 8;
+          // update in real time
+          $("#head_div_p").text("Distance Moved: " + j + "m");
+		  $("#head_div_s").text("Car speed: " + k + "km/h");
+
+          i++;
+        }, 2000);
+      }
+      else {
+        swal({
+          title: "Please set the obstacles first!",
+          text: "",
+          type: "warning",
+          showCancelButton: false,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "OK",
+          closeOnConfirm: false
+        });
+      }
+    });
+  });
+</script>
 {% endblock %}
