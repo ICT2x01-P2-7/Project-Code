@@ -33,7 +33,7 @@ For more information about our git workflow, please refer to flow.md.
 ![ICT2201_2101 Project Diagrams - Full State Diagram](https://user-images.githubusercontent.com/77475889/144004754-fba6de22-e7bc-4b0f-bdca-38752fa1f22f.png)
 
 ### System Test Video
-<Place video here>
+https://user-images.githubusercontent.com/77475889/144436110-44807ec6-ddba-4c6e-a2a4-2c09f270ec7c.mp4
 
 ## Whitebox Testing
 
