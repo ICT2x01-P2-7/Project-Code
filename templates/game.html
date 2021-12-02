@@ -1,15 +1,18 @@
 {% extends "layout.html" %}
 
-{%block header %}
-<h1>Beginner Mode</h1>
-<h2>New to programming? No problem!</h2>
+{% block header %}
+    <h1>{{ mode }}</h1>
+    <h2>{{ difficulty }}</h2>
 {% endblock %}
 
 {% block main %}
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
 <form action="upload.html" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="code">Code sequence shown here:</label>
-        <textarea class="form-control" id="code" rows="5"></textarea>
+        <textarea class="form-control" id="playerInput" name="playerInput" rows="5"></textarea>
         <button type="button" class="btn btn-primary">Move Up</button> <button type="button" class="btn btn-primary">Move Down</button> <button type="button" class="btn btn-primary">Move Left</button> <button type="button" class="btn btn-primary">Move Right</button>
         <button type="submit" class="btn btn-success">Upload Code</button>
     </div>
