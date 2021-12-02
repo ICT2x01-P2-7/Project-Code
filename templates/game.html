@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 
 {%block header %}
-<h1>Car Statistics</h1>
-<p>Speed: 35km/h</p>
-  {% endblock %}
+<div id="head_div">
+  <h1>Car Statistics</h1>
+  <p id="head_div_p"> Distance Moved: 0m </p>
+  <p id="head_div_s"> Car speed: 0km/h </p>
+</div>
+{% endblock %}
 
-  {% block main %}
+{% block main %}
 <form action="upload.html" method="POST" enctype="multipart/form-data">
   <div class="container">
     <div class="container">
       <div class="text-center mt-3">
         <h3>
-          Arrange 3 obstacles along the track <a href="#MymodalPreventScript" data-toggle="modal" id="ready"
+          {{difficulty}} <a href="#MymodalPreventScript" data-toggle="modal" id="ready"
             class="btn btn-outline-success">Ready!</a>
         </h3>
       </div>
@@ -53,7 +56,7 @@
           <div id="11" class="col border changeColor" style="height: 100px; cursor: pointer;"></div>
         </div>
         <div class="row">
-          <div id="12" class="col border changeColor" style="height: 100px;">
+          <div id="12" class="col border changeColor" style="height: 100px; cursor: pointer;">
             <i class="fas fa-flag-checkered fa-3x center"></i>
           </div>
           <div id="13" class="col border changeColor" style="height: 100px;"></div>
@@ -63,10 +66,11 @@
       </div>
     </div>
   </div>
-  <textarea readonly id="move_document" class="container text-center mt-2 border border-dark">Direction Choices</textarea>
+  <textarea readonly id="move_document" name="move_document"
+    class="container text-center mt-2 border border-dark">Direction Choices</textarea>
   <div class="mt-2 mb-2">
     <div class="float-right d-flex">
-      <a id="pause" class="btn btn-outline-danger ml-3 mb-2" style="display: none;">PAUSE</a>
+      <a id="pause" class="btn btn-outline-danger ml-3 mb-2 pause" style="display: none;">PAUSE</a>
       <a id="restart" class="btn btn-outline-primary ml-3 mb-2 restart" style="display: none;">RESTART</a>
       <a id="go" class="btn btn-outline-secondary ml-3 mb-2">GO!</a>
     </div>
@@ -108,20 +112,34 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   var arr = [];
+  var difficulty = '{{difficulty}}';
+  console.log(difficulty);
+  // get 2nd word from string
+  difficulty = difficulty.split(" ");
+  difficulty = difficulty[1];
   var count = 0;
   $(document).ready(function () {
     $(".changeColor").click(function () {
       console.log("clicked");
-      // get id of click 
+      // get id of clicekd
       var id = $(this).attr("id");
       console.log(id);
-      if (count < 3) {
-        $('#' + id).css("background-color", "red");
-        arr.push(id);
-        count++;
+      if (count < difficulty) {
+        if (id == 3 || id == 12) {
+
+        }
+        else {
+          if (arr.includes(id)) {
+            console.log("Obstacle has already been selected!");
+          } else {
+            $('#' + id).css("background-color", "red");
+            arr.push(id);
+            count++;
+          }
+        }
       }
       else {
-        console.log("Cannot change color.");
+        console.log("Cannot change colour!");
       }
     });
   });
@@ -138,7 +156,7 @@
     var prevId = parseInt(id) - 1;
     //get id of previous
     // make id of font awesome div
-    // if id is in array then it cannot move
+    // if id is in array then can not move
     if (arr.includes(prevId.toString())) {
       swal("You hit an obstacle, please try again!", "", "error");
     }
@@ -160,7 +178,7 @@
           $('#' + id).html('');
           if (prevId == 12) {
             // you win
-            swal("You win!", "", "success");
+            swal("You Win!", "", "success");
           }
 
         }
@@ -171,7 +189,7 @@
     var id = $("#0").attr("id");
     var id = global_id;
     var prevId = parseInt(id) - 4;
-    // if id is in array then cannot move up
+    // if id is in array then can not move up
     if (arr.includes(prevId.toString())) {
       swal("You hit an obstacle, please try again!", "", "error");
     }
@@ -203,7 +221,7 @@
     var id = $("#0").attr("id");
     var id = global_id;
     var prevId = parseInt(id) + 1;
-    // if id is in array then cannot move right
+    // if id is in array then can not move right
     if (arr.includes(prevId.toString())) {
       swal("You hit an obstacle, please try again!", "", "error");
     }
@@ -213,7 +231,7 @@
         // global_id = parse_id
       }
       else {
-        if (prevId == 3 || prevId == 7 || prevId == 11) {
+        if (prevId == 4 || prevId == 8 || prevId == 12) {
           global_id = prevId - 1;
           console.log("Invalid move!");
         }
@@ -252,13 +270,27 @@
         $('#' + id).html('');
         if (prevId == 12) {
           // you win
-          swal("You win!", "", "success");
+          swal("You Win!", "", "success");
         }
       }
     }
   }
 
 
+</script>
+<script>
+  $(function () {
+    $(".pause").click(function () {
+	swal({
+     title:"Game Paused!",
+     text: "Do you want to resume?",
+     buttons: {
+            cancel: false,
+            confirm: "RESUME"
+     }
+});
+});
+});
 </script>
 <script>
   $(function () {
@@ -275,13 +307,13 @@
         if (isConfirmed) {
           // ajax call
           $.ajax({
-            url: "http://127.0.0.1:5000/game.html",
+            url: "game.html",
             type: "POST",
             data: {
               "difficulty": "easy"
             },
             success: function (data) {
-              window.location.href = "http://127.0.0.1:5000/game.html";
+              window.location.href = "/";
             }
           });
         }
@@ -298,7 +330,7 @@
       var code = $("#instructorPW").val();
       if (code == "admin") {
         // if arr is not empty
-        if (arr.length == 3) {
+        if (arr.length == difficulty) {
           $("#MymodalPreventScript").modal("hide");
           // hide ready button
           $("#ready").hide();
@@ -336,7 +368,7 @@
         else {
           $("#MymodalPreventScript").modal("hide");
           swal({
-            title: "Please Choose 3 obstacles!",
+            title: "Please Choose " + difficulty + " obstacles",
             text: "",
             type: "warning",
             showCancelButton: false,
@@ -357,6 +389,17 @@
   // on click go button function
   $(document).ready(function () {
     $("#go").click(function () {
+      // call ajax call to save data in database
+      // get data from textarea
+      var move_document = $("#move_document").val();
+      console.log(move_document);
+      $.ajax({
+        url: "/upload.html",
+        type: "POST",
+        data: {
+          'move_document': move_document
+        }
+      });
       // if move_array is not empty
       if (move_array.length != 0) {
         // disable go button
@@ -367,6 +410,7 @@
         $("#pause").show();
         console.log(move_array);
         var i = 0;
+        var j = 1;
         setInterval(function () {
           if (i < move_array.length) {
             if (move_array[i] == 1) {
@@ -384,6 +428,11 @@
           }
 
           else return;
+          j = i + 1;
+		  k = i + 8;
+          // update in real time
+          $("#head_div_p").text("Distance Moved: " + j + "m");
+		  $("#head_div_s").text("Car speed: " + k + "km/h");
 
           i++;
         }, 2000);
@@ -402,5 +451,4 @@
     });
   });
 </script>
-{% endblock %}
 {% endblock %}
