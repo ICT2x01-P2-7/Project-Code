@@ -123,22 +123,22 @@ void loop() {
         }
         
         // Check to see if the client request was "GET /H" or "GET /L":
-        if (currentLine.endsWith("GET /UP")) {
+        if (currentLine.endsWith("GET /Up")) {
           digitalWrite(LED_BUILTIN, HIGH);               // GET /UP turns the LED on
           display.println("UP");
           Serial.println("UP");
         }
-        if (currentLine.endsWith("GET /DOWN")) {
+        if (currentLine.endsWith("GET /Down")) {
           digitalWrite(LED_BUILTIN, LOW);                // GET /DOWN turns the LED off
           display.println("DOWN");
           Serial.println("DOWN");
         }
-        if (currentLine.endsWith("GET /LEFT")) {
+        if (currentLine.endsWith("GET /Left")) {
           digitalWrite(LED_BUILTIN, HIGH);
           display.println("LEFT");
           Serial.println("LEFT");
         }
-        if (currentLine.endsWith("GET /RIGHT")) {
+        if (currentLine.endsWith("GET /Right")) {
           digitalWrite(LED_BUILTIN, HIGH);
           display.println("RIGHT");
           Serial.println("RIGHT");

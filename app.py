@@ -75,14 +75,13 @@ def upload():
     global addr
     print(addr)
     codeinput = request.form.get('playerInput')
-    print(codeinput)
 
-    codeinput = codeinput.replace("<", "")
-    codeinput = codeinput.replace(">", "")
-
-    codesplit = codeinput.split()
+    codesplit = codeinput.split(", ")
+    print(codesplit)
 
     for i in codesplit:
+        if i == '':
+            break
         codeObj = uploadCode(i, addr)
         status = codeObj.send()
         time.sleep(1)
