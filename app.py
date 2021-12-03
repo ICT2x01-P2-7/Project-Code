@@ -3,8 +3,11 @@ from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
 from ip import IpValidator
+from upload import uploadCode
+import time
 
-app = Flask(__name__) # Create the flask object  
+app = Flask(__name__) # Create the flask object
+addr = "0.0.0.0" # Create a global var for IP Address
  
 @app.route('/')   
 def default():  
@@ -44,6 +47,7 @@ def game():
 
 @app.route('/challenge.html', methods=['POST'])
 def challenge():
+    global addr
     error = None
     addr = request.form.get("carIP")
     print(addr)
@@ -65,20 +69,31 @@ def challenge():
 
     return render_template('challenge.html') 
 
-global codeinput
 @app.route('/upload.html', methods=['POST'])
 def upload():
-    if request.method == "POST":
-        textarea = request.form['move_document']
+    global addr
+    print(addr)
+    codeinput = request.form.get('move_document')
 
-        # create a text file and write the code to it
-        f = open("code.txt", "w+")
-        f.write(textarea)
-        f.close()
+    codesplit = codeinput.split(", ")
+    print(codesplit)
 
-        print("Hello")
+    for i in codesplit:
+        if i == '':
+            break
+        codeObj = uploadCode(i, addr)
+        status = codeObj.send()
+        time.sleep(1)
+        print(i)
+    
+    # create a text file and write the code to it
+    f = open("code.txt", "w+")
+    f.write(codeinput)
+    f.close()
 
-        return "Ok"
+    print("Hello")
+
+    return "Ok"
 
 if __name__ =='__main__':  
     app.run(debug = True)

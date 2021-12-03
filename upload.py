@@ -9,7 +9,8 @@ class uploadCode:
     # Input: String
     # Output: Boolean
     def send(self):
-        URL = "http://" + self.ip + "/" + self.input
+        splitInput = self.input.split()
+        URL = "http://" + self.ip + "/" + splitInput[1]
         print(URL)
 
         try:

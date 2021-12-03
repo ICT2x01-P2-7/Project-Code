@@ -26,14 +26,12 @@ For more information about our git workflow, please refer to flow.md.
 - An embedded video that runs through all the system test cases you have created (and refined) from M2
 - ~3 mins long to cover all system tests
 
-### Use Case Diagram
-![ICT2201_2101 Charts - Use Case Diagram 2 0](https://user-images.githubusercontent.com/77475889/144005022-42722abe-fbf3-41b5-97f9-b596b3293cac.png)
+### Use Case Diagram and System State Diagram
+As there are no changes, please refer to the M2 document for the Use Case Diagram and System State Diagram.
 
-### System State Diagram
-![ICT2201_2101 Project Diagrams - Full State Diagram](https://user-images.githubusercontent.com/77475889/144004754-fba6de22-e7bc-4b0f-bdca-38752fa1f22f.png)
 
 ### System Test Video
-<Place video here>
+https://user-images.githubusercontent.com/77475889/144546999-ab69a328-3b22-43a0-9745-9b663dd36fe4.mp4
 
 ## Whitebox Testing
 
