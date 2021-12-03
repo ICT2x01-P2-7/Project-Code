@@ -31,7 +31,7 @@ As there are no changes, please refer to the M2 document for the Use Case Diagra
 
 
 ### System Test Video
-<Video Here>
+https://user-images.githubusercontent.com/77475889/144546999-ab69a328-3b22-43a0-9745-9b663dd36fe4.mp4
 
 ## Whitebox Testing
 
