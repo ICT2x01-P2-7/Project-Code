@@ -6,7 +6,8 @@ from ip import IpValidator
 from upload import uploadCode
 import time
 
-app = Flask(__name__) # Create the flask object  
+app = Flask(__name__) # Create the flask object
+addr = "0.0.0.0" # Create a global var for IP Address
  
 @app.route('/')   
 def default():  
@@ -46,6 +47,7 @@ def game():
 
 @app.route('/challenge.html', methods=['POST'])
 def challenge():
+    global addr
     error = None
     addr = request.form.get("carIP")
     print(addr)
@@ -67,12 +69,11 @@ def challenge():
 
     return render_template('challenge.html') 
 
-global codeinput
 @app.route('/upload.html', methods=['POST'])
 def upload():
     global addr
     print(addr)
-    codeinput = request.form.get('playerInput')
+    codeinput = request.form.get('move_document')
 
     codesplit = codeinput.split(", ")
     print(codesplit)
@@ -84,15 +85,15 @@ def upload():
         status = codeObj.send()
         time.sleep(1)
         print(i)
+    
+    # create a text file and write the code to it
+    f = open("code.txt", "w+")
+    f.write(codeinput)
+    f.close()
 
-        # create a text file and write the code to it
-        f = open("code.txt", "w+")
-        f.write(textarea)
-        f.close()
+    print("Hello")
 
-        print("Hello")
-
-        return "Ok"
+    return "Ok"
 
 if __name__ =='__main__':  
     app.run(debug = True)
