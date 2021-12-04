@@ -1,5 +1,23 @@
 {% extends "layout.html" %}
 
+{%block header %}
+<h1>Directional commands</h1>
+
+{% endblock %}
+
 {% block main %}
+<h3>The car has successfully read the following commands: </h3>
 {{content}}
+<br><br>
+
+<div class="container alert alert-primary">
+    <div class="row justify-content-center">
+        <h3><u>In the event that the car is not moving:</u></h3>
+        </div>
+    <div class="row justify-content-center">
+        1. Return to homepage to reconnect the car<br>
+        2. Check for loose wires or faults on the car<br>
+    </div>
+</div>
+
 {% endblock %}
