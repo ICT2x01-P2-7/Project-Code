@@ -104,7 +104,6 @@
 </div>
 {% endblock %}
 
-
 {% block scripts %}
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
@@ -275,9 +274,8 @@
       }
     }
   }
-
-
 </script>
+
 <script>
   $(function () {
     $(".pause").click(function () {
@@ -292,6 +290,7 @@
 });
 });
 </script>
+
 <script>
   $(function () {
     $(".restart").click(function () {
@@ -385,23 +384,33 @@
     });
   });
 </script>
+
 <script>
-  // on click go button function
   $(document).ready(function () {
     $("#go").click(function () {
-      // call ajax call to save data in database
-      // get data from textarea
       var move_document = $("#move_document").val();
-      console.log(move_document);
-      $.ajax({
-        url: "/upload.html",
-        type: "POST",
-        data: {
-          'move_document': move_document
-        }
-      });
-      // if move_array is not empty
-      if (move_array.length != 0) {
+      title = "Are you sure you want to proceed with these directions?";
+      swal({
+        title: title,
+        text: move_document,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        button: "Let's Go!",
+        closeOnConfirm: false
+      }).then(isConfirmed => {
+        if (isConfirmed) {
+          var move_document = $("#move_document").val();
+          console.log(move_document);
+          $.ajax({
+            url: "/upload.html",
+            type: "POST",
+            data: {
+              'move_document': move_document   
+            }
+          });
+
+          if (move_array.length != 0) {
         // disable go button
         $("#go").hide();
         // show restart button
@@ -426,14 +435,12 @@
               downBox();
             }
           }
-
           else return;
           j = i + 1;
-		  k = i + 8;
+		      k = i + 8;
           // update in real time
           $("#head_div_p").text("Distance Moved: " + j + "m");
 		  $("#head_div_s").text("Car speed: " + k + "km/h");
-
           i++;
         }, 2000);
       }
@@ -448,6 +455,8 @@
           closeOnConfirm: false
         });
       }
+        }
+      });
     });
   });
 </script>
