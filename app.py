@@ -4,7 +4,11 @@ from werkzeug.utils import redirect
 from authenticate import check
 from ip import IpValidator
 
-app = Flask(__name__) # Create the flask object  
+from upload import uploadCode
+import time
+
+app = Flask(__name__) # Create the flask object
+addr = "0.0.0.0" # Create a global var for IP Address
  
 @app.route('/')   
 def default():  
@@ -44,6 +48,8 @@ def game():
 
 @app.route('/challenge.html', methods=['POST'])
 def challenge():
+    global addr
+
     error = None
     addr = request.form.get("carIP")
     print(addr)
@@ -65,15 +71,41 @@ def challenge():
 
     return render_template('challenge.html') 
 
-@app.route('/upload.html')
+global codeinput
+@app.route('/upload.html', methods=['POST'])
 def upload():
-    global codeinput
 
-    codeinput = request.file['code']
+    global addr
+    print(addr)
+    codeinput = request.form.get('move_document')
 
-    # Code here uploads to car
+    codesplit = codeinput.split(", ")
+    print(codesplit)
 
-    return render_template('upload.html')
+    for i in codesplit:
+        if i == '':
+            break
+        codeObj = uploadCode(i, addr)
+        status = codeObj.send()
+        time.sleep(1)
+        print(i)
+    
+    # create a text file and write the code to it
+    f = open("code.txt", "w+")
+    f.write(codeinput)
+    f.close()
+
+    print("Hello")
+
+    return "Ok"
+
+@app.route("/movement.html")
+def movement():
+    f = open("code.txt", "r")
+    content = f.read()
+    print("File read")
+
+    return render_template("movement.html", content = content)
 
 if __name__ =='__main__':  
     app.run(debug = True)
