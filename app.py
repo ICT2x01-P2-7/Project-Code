@@ -95,5 +95,13 @@ def upload():
 
     return "Ok"
 
+@app.route("/movement.html")
+def movement():
+    f = open("code.txt", "r")
+    content = f.read()
+    print("File read")
+
+    return render_template("movement.html", content = content)
+
 if __name__ =='__main__':  
     app.run(debug = True)
