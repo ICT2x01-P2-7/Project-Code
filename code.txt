@@ -1,1 +1,1 @@
-Move Down, Move Down, 
+Move Down, Move Left, Move Down, Move Left, Move Down, Move Left,
