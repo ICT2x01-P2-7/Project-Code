@@ -22,10 +22,6 @@ For more information about our git workflow, please refer to flow.md.
 
 ## User Acceptance Testing
 
-- Include an updated use case diagram and system state diagram if there are changes made based on M2. Highlight the changes clearly.
-- An embedded video that runs through all the system test cases you have created (and refined) from M2
-- ~3 mins long to cover all system tests
-
 ### Use Case Diagram and System State Diagram
 As there are no changes, please refer to the M2 document for the Use Case Diagram and System State Diagram.
 
