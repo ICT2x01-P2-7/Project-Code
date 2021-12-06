@@ -3,6 +3,7 @@ from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 from authenticate import check
 from ip import IpValidator
+
 from upload import uploadCode
 import time
 
@@ -48,6 +49,7 @@ def game():
 @app.route('/challenge.html', methods=['POST'])
 def challenge():
     global addr
+
     error = None
     addr = request.form.get("carIP")
     print(addr)
@@ -69,8 +71,10 @@ def challenge():
 
     return render_template('challenge.html') 
 
+global codeinput
 @app.route('/upload.html', methods=['POST'])
 def upload():
+
     global addr
     print(addr)
     codeinput = request.form.get('move_document')
@@ -94,6 +98,14 @@ def upload():
     print("Hello")
 
     return "Ok"
+
+@app.route("/movement.html")
+def movement():
+    f = open("code.txt", "r")
+    content = f.read()
+    print("File read")
+
+    return render_template("movement.html", content = content)
 
 if __name__ =='__main__':  
     app.run(debug = True)
